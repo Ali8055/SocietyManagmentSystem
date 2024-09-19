@@ -1,4 +1,4 @@
-import House from '../models/House';
+import House from '../models/House.js';
 // Add new house
 export const addHouse = async (req, res) => {
   const { houseNumber, owner, isRented, tenant } = req.body;
