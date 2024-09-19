@@ -3,12 +3,15 @@ import House from '../models/House.js';
 
 // Add a new bill for a house
 export const addBill = async (req, res) => {
-  const { houseId, dueDate } = req.body;
+  const { houseNumber, dueDate } = req.body;
   const amount = 3000;    // Fixed bill amount
   const lateFine = 200;    // Fixed late fine
 
   try {
-    const bill = new Bill({ house: houseId, amount, dueDate, lateFine });
+    const house = await House.findOne({ houseNumber: req.params.houseNumber });
+    console.log(house,"house");
+    
+    const bill = new Bill({ house: house._id, amount, dueDate, lateFine });
     await bill.save();
     res.status(201).json(bill);
   } catch (error) {

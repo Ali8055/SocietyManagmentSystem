@@ -3,7 +3,7 @@ import { addBill, getBillsByHouse, payBill, generateMonthlyBills } from '../cont
 
 const router = express.Router();
 
-router.post('/add', addBill);                 // Add a new bill manually
+router.post('/add/:houseNumber', addBill);                 // Add a new bill manually
 router.get('/:houseId', getBillsByHouse);     // Get all bills for a house
 router.put('/pay/:billId', payBill);          // Pay a specific bill
 router.post('/generate-monthly-bills', generateMonthlyBills);  // Generate bills for all houses
